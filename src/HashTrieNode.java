@@ -61,6 +61,31 @@ public class HashTrieNode implements CompleterTrieNode {
         if (getParent() != null) getParent().addScoredMatch(sm);
     }
 
+    public List<ScoredMatch> searchMatches(String prefix) {
+        CompleterTrieNode curr = this;
+        if (prefix != null && !prefix.trim().isEmpty()) {
+            for (char c : prefix.toCharArray()) {
+                curr = curr.search(c);
+                // If it does not go all the way return empty results
+                if (curr == null) return new ArrayList<>();
+            }
+        }
+        return curr.getMatches();
+    }
+
+    public void add(String name, int score) {
+        add(name, score, name.toCharArray(), 0);
+    }
+
+    public void add(String name, int score, char[] nameArr, int start) {
+        CompleterTrieNode curr = this;
+        for (int i=start; i<nameArr.length; i++) {
+            curr = curr.insert(nameArr[i]);
+        }
+        curr.markEndOfWord();
+        curr.addScoredMatch(new ScoredMatch(name, score));
+    }
+
     public List<ScoredMatch> getMatches() {
         return matches;
     }

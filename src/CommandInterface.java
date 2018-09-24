@@ -5,6 +5,7 @@ public class CommandInterface {
         myCompleter.loadCsv("resources/wordscores01.csv");
         myCompleter.loadCsv("resources/wordscores02.csv");
         myCompleter.loadCsv("resources/wordscores03.csv");
+        myCompleter.loadCsv("resources/wordscores04.csv");
 
         System.out.println(myCompleter.complete("em"));
         
