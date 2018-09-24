@@ -5,14 +5,15 @@ import java.util.List;
 
 public class HashTrieNode implements CompleterTrieNode {
 
-    boolean endOfWord;
-    CompleterTrieNode parent;
-    HashMap<Character, CompleterTrieNode> children;
-    List<ScoredMatch> matches;
+    private boolean endOfWord;
+    private CompleterTrieNode parent;
+    private HashMap<Character, CompleterTrieNode> children;
+    private List<ScoredMatch> matches;
 
     public HashTrieNode(CompleterTrieNode parent) {
         endOfWord = false;
         this.parent = parent;
+        this.children = new HashMap<>();
         this.matches = new ArrayList<>();
     }
 
@@ -41,23 +42,23 @@ public class HashTrieNode implements CompleterTrieNode {
         endOfWord = true;
     }
 
-    public void addScoredMatch(String match, int score) {
-        if (matches.size() < CompleterTrieNode.MATCH_SIZE) {
-            addAndSortScoredMatch(match, score);
+    public void addScoredMatch(ScoredMatch sm) {
+        if (matches.contains(sm)) {
+            matches.remove(sm);
         }
-        else {
-            ScoredMatch sm = matches.get(matches.size()-1);
-            if (sm.score < score) {
+        else if (matches.size() >= Completer.MATCH_SIZE) {
+            ScoredMatch lowest = matches.get(matches.size()-1);
+            if (lowest.getScore() < sm.getScore()) {
                 matches.remove(matches.size()-1);
-                addAndSortScoredMatch(match, score);
             }
         }
+        addAndSortScoredMatch(sm);
     }
 
-    private void addAndSortScoredMatch(String match, int score) {
-        matches.add(new ScoredMatch(match, score));
+    private void addAndSortScoredMatch(ScoredMatch sm) {
+        matches.add(sm);
         Collections.sort(matches);
-        if (getParent() != null) getParent().addScoredMatch(match, score);
+        if (getParent() != null) getParent().addScoredMatch(sm);
     }
 
     public List<ScoredMatch> getMatches() {

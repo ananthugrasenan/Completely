@@ -1,6 +1,6 @@
 public class ScoredMatch implements Comparable<ScoredMatch> {
-    Integer score;
-    String matchStr;
+    private Integer score;
+    private String matchStr;
 
     public ScoredMatch(String matchStr, Integer score) {
         this.score = score;
@@ -8,7 +8,7 @@ public class ScoredMatch implements Comparable<ScoredMatch> {
     }
 
     public int compareTo(ScoredMatch other) {
-        // return score.compareTo(other.score);
+        // reversed Integer compareTo
         return other.getScore().compareTo(score);
     }
 
@@ -18,5 +18,18 @@ public class ScoredMatch implements Comparable<ScoredMatch> {
 
     public String getMatchStr() {
         return matchStr;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || o.getClass() != getClass()) return false;
+        if (this == o) return true;
+        ScoredMatch sm = (ScoredMatch) o;
+        return getMatchStr().equals(sm.getMatchStr());
+    }
+
+    @Override
+    public int hashCode(){
+        return getMatchStr().hashCode();
     }
 }
