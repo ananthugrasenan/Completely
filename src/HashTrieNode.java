@@ -70,7 +70,8 @@ public class HashTrieNode implements CompleterTrieNode {
                 if (curr == null) return new ArrayList<>();
             }
         }
-        return curr.getMatches();
+        // Return a new list with contents
+        return new ArrayList<>(curr.getMatches());
     }
 
     public void add(String name, int score) {
