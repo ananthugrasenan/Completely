@@ -58,7 +58,6 @@ public class HashTrieNode implements CompleterTrieNode {
     private void addAndSortScoredMatch(ScoredMatch sm) {
         matches.add(sm);
         Collections.sort(matches);
-        if (getParent() != null) getParent().addScoredMatch(sm);
     }
 
     public List<ScoredMatch> searchMatches(String prefix) {
@@ -80,11 +79,14 @@ public class HashTrieNode implements CompleterTrieNode {
 
     public void add(String name, int score, char[] nameArr, int start) {
         CompleterTrieNode curr = this;
+        ScoredMatch sm = new ScoredMatch(name, score);
         for (int i=start; i<nameArr.length; i++) {
+            // Call insert to get to node at the next
+            // lower level and then add the match there
             curr = curr.insert(nameArr[i]);
+            curr.addScoredMatch(sm);
         }
         curr.markEndOfWord();
-        curr.addScoredMatch(new ScoredMatch(name, score));
     }
 
     public List<ScoredMatch> getMatches() {
