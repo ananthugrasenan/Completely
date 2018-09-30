@@ -1,0 +1,33 @@
+README
+------
+This file contains general description and instructions for the Completely project.
+
+PROJECT STRUCTURE
+-----------------
+Source files are under Completely/src/main
+Test files are under Completely/src/main
+Test data in csv files under Completely/resources
+
+INSTRUCTIONS
+------------
+The easiest way to run is by running the CommandInput class that has a main method. This will
+provide a commandline interface where users can issue available commands.
+
+User commands:
+add [word] [score]
+	Example: add chair 54
+load [path]
+	Example: load resources/wordscores01.csv
+complete [prefix]
+	Example: complete ch
+clear
+	Example: clear
+write [path]
+	Example: write tmp/dict1.json
+read [path]
+	Example: read tmp/dict1.json
+Enter 'q!' to quit
+
+All commands except "clear" can be issued using the first letter as shortcut.
+Example: a chair 54
+is the same as: add chair 54

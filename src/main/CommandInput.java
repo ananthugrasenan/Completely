@@ -30,7 +30,7 @@ public class CommandInput {
             String[] userArgs = line.trim().split(" ");
             if (userArgs.length < 1) continue;
             switch (userArgs[0]) {
-                case "add":
+                case "add": case "a":
                     if (userArgs.length >= 3) {
                         myCompleter.add(userArgs[1], Integer.parseInt(userArgs[2]));
                         System.out.println("Added " + userArgs[1]);
@@ -39,7 +39,7 @@ public class CommandInput {
                         System.out.println("Missing arguments for " + userArgs[0]);
                     }
                     break;
-                case "complete":
+                case "complete": case "c":
                     if (userArgs.length >= 2) {
                         System.out.println("Matches: " + myCompleter.complete(userArgs[1]));
                     }
@@ -47,10 +47,14 @@ public class CommandInput {
                         System.out.println("Missing arguments for " + userArgs[0]);
                     }
                     break;
-                case "load":
+                case "load": case "l":
                     if (userArgs.length >= 2) {
-                        myCompleter.loadCsv(userArgs[1]);
-                        System.out.println("Loaded " + userArgs[1]);
+                        try {
+                            myCompleter.loadCsv(userArgs[1]);
+                            System.out.println("Loaded " + userArgs[1]);
+                        } catch (RuntimeException ex) {
+                            System.out.println(ex.getMessage());
+                        }
                     }
                     else {
                             System.out.println("Missing arguments for " + userArgs[0]);
@@ -60,31 +64,31 @@ public class CommandInput {
                     myCompleter = new CompleterTrieDict();
                     System.out.println("Cleared dictionary");
                     break;
-                case "write":
+                case "write": case "w":
                     if (userArgs.length >= 2) {
                         ObjectMapper mapper = new ObjectMapper();
                         File jsonFile = new File(userArgs[1]);
                         try {
                             mapper.writeValue(jsonFile, myCompleter);
+                            System.out.println("Wrote dictionary to " + userArgs[1]);
                         } catch (IOException ex) {
-                            ex.getMessage();
+                            System.out.println(ex.getMessage());
                         }
-                        System.out.println("Wrote dictionary to " + userArgs[1]);
                     }
                     else {
                         System.out.println("Missing arguments for " + userArgs[0]);
                     }
                     break;
-                case "read":
+                case "read": case "r":
                     if (userArgs.length >= 2) {
                         File jsonFile = new File(userArgs[1]);
                         ObjectMapper readMapper = new ObjectMapper();
                         try {
                             myCompleter = readMapper.readValue(jsonFile, CompleterTrieDict.class);
+                            System.out.println("Read dictionary from " + userArgs[1]);
                         } catch (IOException ex) {
-                            ex.getMessage();
+                            System.out.println(ex.getMessage());
                         }
-                        System.out.println("Read dictionary from " + userArgs[1]);
                     }
                     else {
                         System.out.println("Missing arguments for " + userArgs[0]);
