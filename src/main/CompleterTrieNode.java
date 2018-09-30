@@ -1,5 +1,11 @@
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.List;
 
+/**
+ * CompleterTrieNode interface definition
+ */
+@JsonDeserialize(as = HashTrieNode.class)
 public interface CompleterTrieNode {
 
     CompleterTrieNode insert(Character c);
@@ -7,7 +13,7 @@ public interface CompleterTrieNode {
     default boolean isEndOfWord() {
         return false;
     }
-    void markEndOfWord();
+    void setEndOfWord(boolean eow);
     void add(String name, int score);
     void add(String name, int score, char[] nameArr, int start);
     void addScoredMatch(ScoredMatch sm);

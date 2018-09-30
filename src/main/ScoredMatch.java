@@ -1,8 +1,12 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ScoredMatch implements Comparable<ScoredMatch> {
     private Integer score;
     private String matchStr;
 
-    public ScoredMatch(String matchStr, Integer score) {
+    public ScoredMatch(
+            @JsonProperty("matchStr") String matchStr,
+            @JsonProperty("score") Integer score) {
         this.score = score;
         this.matchStr = matchStr;
     }

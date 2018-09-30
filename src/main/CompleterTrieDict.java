@@ -4,16 +4,20 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Completer implementation with Trie
+ */
 public class CompleterTrieDict implements Completer {
 
     private HashMap<String, CompleterTrieNode> rootNodes;
 
     public CompleterTrieDict() {
         rootNodes = new HashMap<>();
-        rootNodes.put("default", new HashTrieNode(null));
-        rootNodes.put("underscore", new HashTrieNode(null));
+        rootNodes.put("default", new HashTrieNode());
+        rootNodes.put("underscore", new HashTrieNode());
     }
 
     public List<String> complete(String prefix) {
@@ -65,5 +69,9 @@ public class CompleterTrieDict implements Completer {
             return rootNodes.get(rootName);
         }
         return rootNodes.get("default");
+    }
+
+    public Map<String, CompleterTrieNode> getAllRoots() {
+        return rootNodes;
     }
 }

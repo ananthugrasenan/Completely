@@ -1,9 +1,12 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CompleterTest {
 
@@ -44,6 +47,31 @@ public class CompleterTest {
         assertEquals(myCompleter.complete("ex"),
                 Arrays.asList("ex", "exchange"));
         assertEquals(myCompleter.complete("el"),
+                Arrays.asList("elapse"));
+    }
+
+    /**
+     * Simple serialize deserialize test
+     * @throws IOException
+     */
+    @Test
+    void simpleSerializeTest() throws IOException {
+        CompleterTrieDict myCompleter = new CompleterTrieDict();
+        myCompleter.loadCsv("resources/wordscores01.csv");
+        ObjectMapper mapper = new ObjectMapper();
+        String result = mapper.writeValueAsString(myCompleter);
+        assertTrue(result.contains("aquarium"));
+        assertTrue(result.contains("elapse"));
+        // Read back
+        ObjectMapper readMapper = new ObjectMapper();
+        CompleterTrieDict readBackCompleter = readMapper.readValue(result, CompleterTrieDict.class);
+        assertEquals(readBackCompleter.complete("a"),
+                Arrays.asList("analyst", "aquarium", "ally", "ask"));
+        assertEquals(readBackCompleter.complete("e"),
+                Arrays.asList("elapse", "ex", "exchange"));
+        assertEquals(readBackCompleter.complete("ex"),
+                Arrays.asList("ex", "exchange"));
+        assertEquals(readBackCompleter.complete("el"),
                 Arrays.asList("elapse"));
     }
 }

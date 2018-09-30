@@ -3,16 +3,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Implementation of CompleterTrieNode with HashMap to
+ * hold children.
+ */
 public class HashTrieNode implements CompleterTrieNode {
 
     private boolean endOfWord;
-    private CompleterTrieNode parent;
     private HashMap<Character, CompleterTrieNode> children;
     private List<ScoredMatch> matches;
 
-    public HashTrieNode(CompleterTrieNode parent) {
+    public HashTrieNode() {
         endOfWord = false;
-        this.parent = parent;
         this.children = new HashMap<>();
         this.matches = new ArrayList<>();
     }
@@ -21,7 +23,7 @@ public class HashTrieNode implements CompleterTrieNode {
     public CompleterTrieNode insert(Character c) {
         CompleterTrieNode node = search(c);
         if (node == null) {
-            node = new HashTrieNode(this);
+            node = new HashTrieNode();
             children.put(c, node);
         }
         return node;
@@ -38,8 +40,8 @@ public class HashTrieNode implements CompleterTrieNode {
     }
 
     @Override
-    public void markEndOfWord() {
-        endOfWord = true;
+    public void setEndOfWord(boolean eow) {
+        this.endOfWord = eow;
     }
 
     public void addScoredMatch(ScoredMatch sm) {
@@ -86,15 +88,24 @@ public class HashTrieNode implements CompleterTrieNode {
             curr = curr.insert(nameArr[i]);
             curr.addScoredMatch(sm);
         }
-        curr.markEndOfWord();
+        curr.setEndOfWord(true);
     }
 
     public List<ScoredMatch> getMatches() {
         return matches;
     }
 
-    public CompleterTrieNode getParent() {
-        return parent;
+    public void setMatches(List<ScoredMatch> matches) {
+        this.matches = matches;
     }
+
+   public HashMap<Character, CompleterTrieNode> getChildren() {
+        return children;
+    }
+
+    public void setChildren(HashMap<Character, CompleterTrieNode> children) {
+        this.children = children;
+    }
+
 }
 
