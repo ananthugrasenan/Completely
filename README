@@ -33,3 +33,6 @@ Example: a chair 54
 is the same as: add chair 54
 
 Another option is to run the unit tests in the Completely/src/test directory.
+
+In the test data in csv format under Completely/resources, words are scored
+in the 1-100 range.

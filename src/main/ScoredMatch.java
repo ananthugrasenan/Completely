@@ -12,7 +12,7 @@ public class ScoredMatch implements Comparable<ScoredMatch> {
     }
 
     public int compareTo(ScoredMatch other) {
-        // reversed Integer compareTo
+        // reversed Integer compareTo to get desc order
         return other.getScore().compareTo(score);
     }
 
