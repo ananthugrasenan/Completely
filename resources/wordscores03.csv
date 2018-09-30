@@ -84,7 +84,7 @@ mobile,47
 road,65
 regular,82
 motorist,42
-human body,86
+human,86
 bait,32
 feature,47
 reconcile,44
@@ -286,7 +286,7 @@ thesis,53
 temple,78
 cycle,3
 fire,60
-break down,47
+breakdown,47
 tender,5
 depressed,70
 due,88
@@ -321,7 +321,7 @@ extension,38
 preference,59
 mutation,67
 artificial,34
-right wing,92
+right-wing,92
 berry,56
 neck,52
 spontaneous,75
@@ -655,7 +655,7 @@ agony,50
 calorie,24
 hostage,48
 overlook,13
-gas pedal,94
+gas-pedal,94
 announcement,48
 arrange,56
 sun,96
@@ -986,7 +986,7 @@ generate,94
 cooperation,96
 observation,88
 harmful,20
-computer virus,89
+computer,89
 viable,49
 bless,25
 pool,6
@@ -1005,7 +1005,7 @@ slam,58
 ground,12
 install,64
 horseshoe,75
-credit card,18
+credit,18
 excess,22
 courage,88
 ladder,34
@@ -1013,7 +1013,7 @@ proposal,100
 basket,43
 tourist,33
 width,21
-short circuit,58
+short-circuit,58
 enthusiasm,6
 claim,11
 entry,14
@@ -1042,7 +1042,7 @@ plain,24
 salad,76
 lick,10
 major,4
-folk music,68
+folk,68
 winter,19
 sister,81
 rotation,76
@@ -1420,7 +1420,7 @@ silk,41
 item,51
 topple,81
 survey,92
-ice cream,100
+ice-cream,100
 despair,69
 appear,94
 horror,41
@@ -1451,7 +1451,7 @@ undertake,8
 housing,19
 movie,21
 pay,8
-fool around,51
+fool,51
 border,30
 colon,95
 collapse,72
@@ -1550,7 +1550,7 @@ nationalism,85
 insurance,90
 thaw,93
 process,10
-radiation sickness,3
+radiation,3
 closed,29
 seek,4
 whisper,44
@@ -1613,7 +1613,7 @@ last,24
 weapon,10
 college,44
 dawn,35
-mail carrier,18
+mail-carrier,18
 seasonal,16
 patent,26
 effective,61
@@ -1668,7 +1668,7 @@ garlic,32
 nonsense,75
 premature,45
 betray,82
-index finger,15
+index,15
 licence,22
 terms,4
 exemption,76
@@ -1970,7 +1970,7 @@ aisle,54
 abuse,3
 mature,11
 institution,4
-work out,61
+work-out,61
 effort,98
 sodium,44
 wear,89
@@ -2049,7 +2049,7 @@ appointment,50
 exceed,96
 threaten,71
 opera,87
-old age,75
+old,75
 oppose,31
 temptation,74
 predator,21
@@ -2112,7 +2112,7 @@ deficiency,85
 facility,86
 dramatic,41
 architecture,92
-cell phone,17
+cell-phone,17
 calculation,89
 empirical,75
 oral,45
@@ -2237,7 +2237,7 @@ ceiling,24
 ensure,55
 presidency,8
 carry,23
-blue jean,87
+blue,87
 sketch,43
 official,20
 layer,4
@@ -2519,7 +2519,7 @@ bottom,52
 give,74
 glue,64
 prosecute,48
-egg white,24
+egg-white,24
 gene,43
 communist,79
 torch,13
@@ -3097,7 +3097,7 @@ communication,17
 veteran,37
 opposite,95
 pick,91
-break in,99
+break-in,99
 insert,63
 potential,73
 wire,72
@@ -3245,7 +3245,7 @@ belt,74
 diameter,2
 tenant,5
 convention,73
-wear out,24
+wear,24
 obese,2
 influence,57
 disagreement,51

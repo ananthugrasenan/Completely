@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,5 +74,52 @@ public class CompleterTest {
                 Arrays.asList("ex", "exchange"));
         assertEquals(readBackCompleter.complete("el"),
                 Arrays.asList("elapse"));
+    }
+
+    /**
+     * Simple test to serialize deserialize to file
+     * @throws IOException
+     */
+    @Test
+    void simpleSerializeToFileTest() throws IOException {
+        CompleterTrieDict myCompleter = new CompleterTrieDict();
+        myCompleter.loadCsv("resources/wordscores01.csv");
+        ObjectMapper mapper = new ObjectMapper();
+        File jsonFile = new File("tmp/dict1.json");
+        mapper.writeValue(jsonFile, myCompleter);
+        // Read back from json file
+        ObjectMapper readMapper = new ObjectMapper();
+        CompleterTrieDict readBackCompleter = readMapper.readValue(jsonFile, CompleterTrieDict.class);
+        assertEquals(readBackCompleter.complete("a"),
+                Arrays.asList("analyst", "aquarium", "ally", "ask"));
+        assertEquals(readBackCompleter.complete("e"),
+                Arrays.asList("elapse", "ex", "exchange"));
+        assertEquals(readBackCompleter.complete("ex"),
+                Arrays.asList("ex", "exchange"));
+        assertEquals(readBackCompleter.complete("el"),
+                Arrays.asList("elapse"));
+        jsonFile.delete();
+    }
+
+    /**
+     * Test matches with underscores
+     */
+    @Test
+    void underscoreCompleteTest1() {
+        Completer myCompleter = new CompleterTrieDict();
+        myCompleter.loadCsv("resources/wordscores02.csv");
+        myCompleter.loadCsv("resources/wordscores03.csv");
+        assertEquals(myCompleter.complete("ban"),
+                Arrays.asList("band", "banquet", "bank", "banner", "banana", "bang", "ban", "banish"));
+        myCompleter.loadCsv("resources/wordscores04.csv");
+        assertEquals(myCompleter.complete("ban"),
+                Arrays.asList("banana_reveal", "unrest_banner", "band", "ban_dose", "seem_banquet", "banquet",
+                        "computer_bang", "commerce_ban", "bank", "banner"));
+        myCompleter.add("ban_this_please", 95);
+        myCompleter.add("do_not_ban_me", 97);
+        assertEquals(myCompleter.complete("ban"),
+                Arrays.asList("do_not_ban_me", "ban_this_please", "banana_reveal",
+                        "unrest_banner", "band", "ban_dose", "seem_banquet", "banquet",
+                        "computer_bang", "commerce_ban"));
     }
 }

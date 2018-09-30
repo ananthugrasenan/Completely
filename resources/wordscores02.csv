@@ -1,7 +1,7 @@
 tract,3
 look,19
 perfect,64
-radiation sickness,90
+radiation,90
 spy,3
 reliance,86
 lump,3
@@ -28,7 +28,6 @@ hill,26
 sweet,69
 passage,21
 terminal,5
-banquet,79
 hay,30
 trend,76
 volcano,84
@@ -287,7 +286,7 @@ borrow,72
 ballot,78
 document,24
 kidney,46
-credit card,47
+credit,47
 west,6
 praise,85
 deep,79
@@ -416,7 +415,7 @@ function,80
 central,100
 budget,21
 bell,5
-break in,59
+break-in,59
 circumstance,75
 birthday,21
 charity,80
@@ -826,7 +825,7 @@ thank,38
 cousin,88
 call,19
 cupboard,14
-egg white,73
+eggwhite,73
 guide,73
 last,55
 acquaintance,61
