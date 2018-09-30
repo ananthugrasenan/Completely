@@ -5,7 +5,7 @@ This file contains general description and instructions for the Completely proje
 PROJECT STRUCTURE
 -----------------
 Source files are under Completely/src/main
-Test files are under Completely/src/main
+Test files are under Completely/src/test
 Test data in csv files under Completely/resources
 
 INSTRUCTIONS
@@ -31,3 +31,5 @@ Enter 'q!' to quit
 All commands except "clear" can be issued using the first letter as shortcut.
 Example: a chair 54
 is the same as: add chair 54
+
+Another option is to run the unit tests in the Completely/src/test directory.
