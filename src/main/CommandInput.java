@@ -8,21 +8,8 @@ public class CommandInput {
     public static void main(String... args) {
 
         Completer myCompleter = new CompleterTrieDict();
-        System.out.println("User commands: ");
-        System.out.println("add [word] [score]");
-        System.out.println("\tExample: add chair 54");
-        System.out.println("load [path]");
-        System.out.println("\tExample: load resources/wordscores01.csv");
-        System.out.println("complete [prefix]");
-        System.out.println("\tExample: complete ch");
-        System.out.println("clear");
-        System.out.println("\tExample: clear");
-        System.out.println("write [path]");
-        System.out.println("\tExample: write tmp/dict1.json");
-        System.out.println("read [path]");
-        System.out.println("\tExample: read tmp/dict1.json");
-        System.out.println("Enter 'q!' to quit");
-        System.out.println("--------------------");
+        // print help
+        help();
 
         Scanner scan = new Scanner(System.in);
         String line;
@@ -64,6 +51,9 @@ public class CommandInput {
                     myCompleter = new CompleterTrieDict();
                     System.out.println("Cleared dictionary");
                     break;
+                case "help": case "h":
+                    help();
+                    break;
                 case "write": case "w":
                     if (userArgs.length >= 2) {
                         ObjectMapper mapper = new ObjectMapper();
@@ -99,5 +89,23 @@ public class CommandInput {
                     System.out.println("Unknown command " + line);
             }
         }
+    }
+
+    static void help() {
+        System.out.println("User commands: ");
+        System.out.println("add [word] [score]");
+        System.out.println("\tExample: add chair 54");
+        System.out.println("load [path]");
+        System.out.println("\tExample: load resources/wordscores01.csv");
+        System.out.println("complete [prefix]");
+        System.out.println("\tExample: complete ch");
+        System.out.println("clear");
+        System.out.println("\tExample: clear");
+        System.out.println("write [path]");
+        System.out.println("\tExample: write tmp/dict1.json");
+        System.out.println("read [path]");
+        System.out.println("\tExample: read tmp/dict1.json");
+        System.out.println("Enter 'q!' to quit");
+        System.out.println("--------------------");
     }
 }
